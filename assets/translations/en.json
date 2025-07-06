@@ -1,0 +1,14 @@
+{
+  "welcome": "Welcome Back 👋🏼",
+  "to": "to ",
+  "staffApp": "Oasis Staff Application",
+  "loginContinue": "Hello There! , login to continue",
+  "userName": "Username",
+  "Password": "Password",
+  "Login": "Login",
+  "enterUname": "Please enter your username !!",
+  "enterPassword": "Please enter your Password !!",
+  "mailNotValid": "The email address you entered is invalid.",
+  "conWizGog": "Or Continue With Google Account.",
+  "googleLogin": "Login With Google"
+}
