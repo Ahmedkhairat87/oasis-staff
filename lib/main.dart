@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oasisstaff/core/app_style.dart';
 import 'package:oasisstaff/core/providers/thememode_provider.dart';
 import 'package:oasisstaff/logIn.dart';
+import 'package:oasisstaff/home.dart';
 import 'package:provider/provider.dart';
-
 import 'core/reusable_components/prefsHelper.dart';
 
 Future<void> main() async {
@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
           themeMode: themeProvider.currentTheme,
           routes:{
             Login.routeName: (context) => Login(),
+            HomeScreen.routeName: (context) => HomeScreen(),
           },
           initialRoute: Login.routeName ,
           home: Login(),
