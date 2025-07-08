@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oasisstaff/core/api-control/apiServiceProvider.dart';
+import 'package:oasisstaff/core/api-control/apiManager.dart';
 import 'package:oasisstaff/core/app_style.dart';
 import 'package:oasisstaff/core/constants.dart';
+import 'package:oasisstaff/core/services/loginServices/AuthLoginService.dart';
+import 'package:oasisstaff/model/sourcesResponse/LoginResponse.dart';
 import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:oasisstaff/core/reusable_components/custom_button.dart';
@@ -159,13 +163,42 @@ class _LoginState extends State<Login> {
                 ////Login Button Starts
                 CustomButton(
                   txt: StringsManager.Login.tr(),
-                  onPressed: () {
-                    if (
-                    formKey.currentState!.validate()
-                    ) {
-                      print("Login Successful");
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      // var params = {
+                      //   "user" : usernameController.text ,
+                      //   "pass" : passwordController.text ,
+                      //   "deviceID":"" ,
+                      //   "deviceType":"" ,
+                      //   "FCM":""
+                      // };
+
+
+
+                      LoginResponse response = await AuthLoginService.login(
+                          username: usernameController.text,
+                          password: passwordController.text,
+                          deviceId: "",
+                          deviceType: "",
+                          fcmToken: ""
+                      );
+
+                      if (response.token != null && response.token != "") {
+                        final userData = response.data?.isNotEmpty == true ? response.data!.first : null;
+                        print("✅ Welcome ${userData?.empName}");
+                        print("🔑 Token: ${response.token}");
+                      } else {
+                        print("❌ Error:");
+                      }
+
                     }
-                  },
+
+                    //validation
+                    else {
+                      print("🛑 Validation Error");
+                    }
+
+                    }
                 ),
                 ////Login Button Ends
                 SizedBox(height: 20.h),
@@ -287,3 +320,4 @@ class _LoginState extends State<Login> {
     );
   }
 }
+
