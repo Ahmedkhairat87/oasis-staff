@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oasisstaff/core/api-control/apiServiceProvider.dart';
+import 'package:oasisstaff/core/api-control/apiManager.dart';
+import 'package:oasisstaff/core/app_style.dart';
 import 'package:oasisstaff/core/constants.dart';
+import 'package:oasisstaff/core/services/loginServices/AuthLoginService.dart';
+import 'package:oasisstaff/model/sourcesResponse/LoginResponse.dart';
 import 'package:provider/provider.dart';
 import 'package:oasisstaff/core/reusable_components/custom_button.dart';
 import 'package:oasisstaff/core/reusable_components/text_box.dart';
@@ -132,48 +137,118 @@ class _LoginState extends State<Login> {
                           color: colorScheme.onSurface,
                         ),
                       ),
-                      SizedBox(height: 20.h),
-                      CustomTextBox(
-                        hint: StringsManager.userName.tr(),
-                        icon: const Icon(Icons.account_box),
-                        controller: usernameController,
-                        keyboardType: TextInputType.emailAddress,
-                        isObscured: false,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return StringsManager.enterUname.tr();
-                          }
-                          if (!RegExp(emailRegex).hasMatch(value)) {
-                            return StringsManager.mailNotValid.tr();
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 20.h),
-                      CustomTextBox(
-                        hint: StringsManager.Password.tr(),
-                        icon: const Icon(Icons.password),
-                        controller: passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        isObscured: true,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return StringsManager.enterPassword.tr();
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20.h),
-                  ////Login Button Starts
-                  CustomButton(
-                    txt: StringsManager.Login.tr(),
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
+
+                    ),
+                    SizedBox(height: 20.h),
+                    CustomTextBox(
+                      hint: StringsManager.userName.tr(),
+                      icon: const Icon(Icons.account_box),
+                      controller: usernameController,
+                      keyboardType: TextInputType.emailAddress,
+                      isObscured: false,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return StringsManager.enterUname.tr();
+                        }
+                        if (!RegExp(emailRegex).hasMatch(value)){
+                          return StringsManager.mailNotValid.tr();
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20.h),
+                    CustomTextBox(
+                      hint: StringsManager.Password.tr(),
+                      icon: const Icon(Icons.password),
+                      controller: passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      isObscured: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return StringsManager.enterPassword.tr();
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.h),
+                ////Login Button Starts
+                CustomButton(
+                  txt: StringsManager.Login.tr(),
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      // var params = {
+                      //   "user" : usernameController.text ,
+                      //   "pass" : passwordController.text ,
+                      //   "deviceID":"" ,
+                      //   "deviceType":"" ,
+                      //   "FCM":""
+                      // };
+
+
+
+                      LoginResponse response = await AuthLoginService.login(
+                          username: usernameController.text,
+                          password: passwordController.text,
+                          deviceId: "",
+                          deviceType: "",
+                          fcmToken: ""
+                      );
+
+                      if (response.token != null && response.token != "") {
+                        final userData = response.data?.isNotEmpty == true ? response.data!.first : null;
+                        print("✅ Welcome ${userData?.empName}");
+                        print("🔑 Token: ${response.token}");
+                                               
                         Navigator.pushNamed(context,HomeScreen.routeName);
+
+                      } else {
+                        print("❌ Error:");
                       }
-                    },
+
+                    }
+
+                    //validation
+                    else {
+                      print("🛑 Validation Error");
+                    }
+
+                    }
+                ),
+                ////Login Button Ends
+                SizedBox(height: 20.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10.w),
+                        height: 1.h,
+                        color: colorScheme.onSurface.withOpacity(0.5),
+                      ),),
+                    Text(StringsManager.conWizGog.tr(),
+                      style: textTheme.labelMedium?.copyWith(
+                        color: colorScheme.onSurface,),
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10.w),
+                        height: 1.h,
+                        color: colorScheme.onSurface.withOpacity(0.5),
+                      ),),
+                  ],
+                ),
+                SizedBox(height: 20.h),
+                ////Google Button Starts Here
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    side: BorderSide(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                   ////Login Button Ends
                   SizedBox(height: 20.h),
@@ -303,3 +378,4 @@ class _LoginState extends State<Login> {
     );
   }
 }
+
