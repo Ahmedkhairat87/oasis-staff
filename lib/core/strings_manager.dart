@@ -1,6 +1,15 @@
+
 abstract class StringsManager {
-static const String welcome = "Welcome Back 👋🏼";
-static const String to = "to ";
-static const String staffApp = "Oasis Staff Application";
-static const String loginContinue = "Hello There! , login to continue";
+static String welcome = "welcome";
+static String to = "to";
+static String staffApp = "staffApp";
+static String loginContinue = "loginContinue";
+static String userName = "userName";
+static String Password = "Password";
+static String Login = "Login";
+static String enterUname = "enterUname";
+static String enterPassword = "enterPassword";
+static String mailNotValid = "mailNotValid";
+static String conWizGog = "conWizGog";
+static String googleLogin = "googleLogin";
 }

@@ -1,0 +1,18 @@
+
+flutter_native_splash:
+  color: "#3085fe"
+  image: assets/images/whiteOasisLogoAndroid12@1x.png
+
+  #branding: null # remove this if it's the same as main logo
+
+  android_12:
+    image: assets/images/whiteOasisLogoAndroid12@1x.png
+    icon_background_color: "#3085fe"
+    image_dark: assets/images/whiteOasisLogoAndroid12@1x.png
+    icon_background_color_dark: "#000000"
+
+  ios: true
+  android: true
+  android_gravity: center
+  ios_content_mode: scaleAspectFit
+  fullscreen: true
