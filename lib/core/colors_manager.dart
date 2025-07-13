@@ -26,7 +26,7 @@ abstract class ColorsManager {
   static const Color darkCardColor = Color(0xFF1E1E1E);         // Cards in dark mode
   static const Color darkBorderColor = Color(0xFF2C2C2C);       // Card borders / dividers
 
-  static const Color darkPrimaryColor = Color(0xFF3281F4);      // Same blue as light theme
+  static const Color darkPrimaryColor = Color(0xFF82B1FF);      // Same blue as light theme
   static const Color darkOnPrimaryColor = Color(0xFFFFFFFF);    // Text on dark background (white)
   static const Color darkSecondaryColor = Color(0xFF30B8B0);    // Teal
   static const Color darkTertiaryColor = Color(0xFFF47A70);     // Coral/red-orange
