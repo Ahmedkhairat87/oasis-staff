@@ -34,7 +34,7 @@ class _HorizontalCalendarState extends State<HorizontalCalendar> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return SizedBox(
-      height: 90.h, // Increased slightly to account for padding
+      height: 110.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
@@ -53,7 +53,7 @@ class _HorizontalCalendarState extends State<HorizontalCalendar> {
               widget.onDateSelected(date);
             },
             child: Container(
-              width: 60.w,
+              width: 65.w,
               margin: EdgeInsets.symmetric(horizontal: 6.w, vertical: 6.h),
               decoration: BoxDecoration(
                 color: isSelected ? colorScheme.primary : Colors.white,
@@ -69,6 +69,7 @@ class _HorizontalCalendarState extends State<HorizontalCalendar> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Day
                   Text(
                     DateFormat('dd').format(date),
                     style: TextStyle(
@@ -78,11 +79,21 @@ class _HorizontalCalendarState extends State<HorizontalCalendar> {
                     ),
                   ),
                   SizedBox(height: 4.h),
+                  // Weekday (e.g. Mon)
                   Text(
-                    DateFormat('E').format(date), // Mon, Tue...
+                    DateFormat('E').format(date),
                     style: TextStyle(
                       fontSize: 12.sp,
                       color: isSelected ? Colors.white : Colors.black87,
+                    ),
+                  ),
+                  SizedBox(height: 2.h),
+                  // Month (e.g. Jul)
+                  Text(
+                    DateFormat('MMM').format(date),
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: isSelected ? Colors.white70 : Colors.grey[700],
                     ),
                   ),
                 ],

@@ -38,6 +38,9 @@ static String empType = "empType";
 static String department = "department";
 static String manager = "manager";
 static String xper = "xper";
+static String dailyAtt = "dailyAtt";
+static String urActiv = "urActiv";
+static String viwAl = "viwAl";
 
 
 }

@@ -36,5 +36,8 @@
   "empType": "Employee Type",
   "department": "Department",
   "manager": "Reporting Manager",
-  "xper": "School Experience"
+  "xper": "School Experience",
+  "dailyAtt": "Today Attendance",
+  "urActiv": "Past Activities",
+  "viwAl": "View All"
 }

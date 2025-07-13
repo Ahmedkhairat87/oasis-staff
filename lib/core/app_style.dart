@@ -17,12 +17,13 @@ class AppStyle {
       primary: ColorsManager.lightPrimaryColor,
       onPrimary: ColorsManager.lightOnPrimaryColor,
       secondary: ColorsManager.lightSecondaryColor,
-      onSecondary: Colors.white,
+      onSecondary: ColorsManager.lightWhite,
       error: Colors.red,
       onError: Colors.white,
       surface: ColorsManager.cardColor,
       onSurface: ColorsManager.lightGrey,
       tertiary: ColorsManager.lightTertiaryColor,
+      onTertiary: ColorsManager.lightWhite,
     ),
 
     appBarTheme: const AppBarTheme(
@@ -82,12 +83,13 @@ class AppStyle {
       primary: ColorsManager.darkPrimaryColor,
       onPrimary: ColorsManager.darkOnPrimaryColor,
       secondary: ColorsManager.darkSecondaryColor,
-      onSecondary: Colors.black,
+      onSecondary: ColorsManager.darkBackGround,
       error: Colors.red,
       onError: Colors.black,
       surface: ColorsManager.darkCardColor,
       onSurface: ColorsManager.darkGrey,
       tertiary: ColorsManager.darkTertiaryColor,
+      onTertiary: ColorsManager.darkWhite,
     ),
 
     appBarTheme: const AppBarTheme(
