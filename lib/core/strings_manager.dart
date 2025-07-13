@@ -1,6 +1,56 @@
+
 abstract class StringsManager {
-static const String welcome = "Welcome Back 👋🏼";
-static const String to = "to ";
-static const String staffApp = "Oasis Staff Application";
-static const String loginContinue = "Hello There! , login to continue";
+static String welcome = "welcome";
+static String to = "to";
+static String staffApp = "staffApp";
+static String loginContinue = "loginContinue";
+static String userName = "userName";
+static String Password = "Password";
+static String Login = "Login";
+static String enterUname = "enterUname";
+static String enterPassword = "enterPassword";
+static String mailNotValid = "mailNotValid";
+static String conWizGog = "conWizGog";
+static String googleLogin = "googleLogin";
+static String home = "home";
+static String settings = "settings";
+static String profile = "profile";
+static String logout = "logout";
+static String personalInfo = "personalInfo";
+static String changePass = "changePass";
+static String editPro = "editPro";
+static String general = "general";
+static String language = "language";
+static String themeMode = "themeMode";
+static String appInfo = "appInfo";
+static String appVer = "appVer";
+static String personal = "personal";
+static String professional = "professional";
+static String documents = "documents";
+static String name = "name";
+static String mail = "mail";
+static String phone = "phone";
+static String address = "address";
+static String empID = "empID";
+static String job = "job";
+static String schMail = "schMail";
+static String empType = "empType";
+static String department = "department";
+static String manager = "manager";
+static String xper = "xper";
+
+
+
+
+//Error messages
+static String networkError = "networkError";
+static String loginError = "loginError";
+static String aError = "networkError";
+static String bError = "networkError";
+static String cError = "networkError";
+static String dError = "networkError";
+static String eError = "networkError";
+
+
+
 }

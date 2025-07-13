@@ -1,80 +1,137 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors_manager.dart';
 
 class AppStyle {
-  //LIGHT THEME STARTS HERE
-  static ThemeData lightTheme = ThemeData(
+  static bool isDark = false;
 
-    ////COLORS STARTS HERE
+  /// LIGHT THEME
+  static ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
+
     scaffoldBackgroundColor: ColorsManager.lightBackGround,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.blue,
+    cardColor: ColorsManager.cardColor,
+
+    colorScheme: ColorScheme(
+      brightness: Brightness.light,
       primary: ColorsManager.lightPrimaryColor,
       onPrimary: ColorsManager.lightOnPrimaryColor,
       secondary: ColorsManager.lightSecondaryColor,
-      tertiary: ColorsManager.lightTertiaryColor,
+      onSecondary: Colors.white,
+      error: Colors.red,
+      onError: Colors.white,
+      surface: ColorsManager.cardColor,
       onSurface: ColorsManager.lightGrey,
+      tertiary: ColorsManager.lightTertiaryColor,
     ),
-    ////COLORS ENDS HERE
 
-    useMaterial3: true,
-    appBarTheme:AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       centerTitle: true,
+      elevation: 0,
+      foregroundColor: ColorsManager.lightOnPrimaryColor,
     ),
 
-    ////TEXT THEME STARTS HERE
+    iconTheme: const IconThemeData(
+      color: ColorsManager.lightPrimaryColor,
+    ),
+
     textTheme: TextTheme(
       headlineLarge: TextStyle(
-        fontSize: 20,
+        fontSize: 20.sp,
         fontWeight: FontWeight.bold,
+        color: ColorsManager.lightOnPrimaryColor,
       ),
       labelMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 16.sp,
         fontWeight: FontWeight.bold,
+        color: ColorsManager.lightOnPrimaryColor,
+      ),
+      displayMedium: TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        color: ColorsManager.lightGrey,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w500,
+        color: ColorsManager.lightPrimaryColor,
       ),
     ),
-    ////TEXT THEME ENDS HERE
 
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ColorsManager.lightPrimaryColor,
+        foregroundColor: ColorsManager.lightWhite,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+      ),
+    ),
   );
-  //LIGHT THEME ENDS HERE
 
-  ///////////////////////
-
-  //DARK THEME STARTS HERE
+  /// DARK THEME
   static ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
 
-    ////COLORS STARTS HERE
     scaffoldBackgroundColor: ColorsManager.darkBackGround,
-    colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.blue,
+    cardColor: ColorsManager.darkCardColor,
+
+    colorScheme: ColorScheme(
+      brightness: Brightness.dark,
       primary: ColorsManager.darkPrimaryColor,
       onPrimary: ColorsManager.darkOnPrimaryColor,
       secondary: ColorsManager.darkSecondaryColor,
-      tertiary: ColorsManager.darkTertiaryColor,
+      onSecondary: Colors.black,
+      error: Colors.red,
+      onError: Colors.black,
+      surface: ColorsManager.darkCardColor,
       onSurface: ColorsManager.darkGrey,
+      tertiary: ColorsManager.darkTertiaryColor,
     ),
-    ////COLORS ENDS HERE
 
-    useMaterial3: true,
-    appBarTheme:AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       centerTitle: true,
+      elevation: 0,
+      foregroundColor: ColorsManager.darkOnPrimaryColor,
     ),
 
-    ////TEXT THEME STARTS HERE
+    iconTheme: const IconThemeData(
+      color: ColorsManager.darkPrimaryColor,
+    ),
+
     textTheme: TextTheme(
-        headlineLarge: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      labelMedium: TextStyle(
-        fontSize: 16,
+      headlineLarge: TextStyle(
+        fontSize: 20.sp,
         fontWeight: FontWeight.bold,
+        color: ColorsManager.darkOnPrimaryColor,
+      ),
+      labelMedium: TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        color: ColorsManager.darkOnPrimaryColor,
+      ),
+      displayMedium: TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        color: ColorsManager.darkGrey,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w500,
+        color: ColorsManager.darkPrimaryColor,
       ),
     ),
-    ////TEXT THEME ENDS HERE
 
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ColorsManager.darkPrimaryColor,
+        foregroundColor: ColorsManager.darkWhite,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+      ),
+    ),
   );
-//LIGHT THEME ENDS HERE
 }

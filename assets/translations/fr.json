@@ -1,0 +1,47 @@
+{
+  "welcome": "Bon retour 👋🏼",
+  "to": "à ",
+  "staffApp": "Application du personnel Oasis",
+  "loginContinue": "Bonjour ! Connectez-vous pour continuer",
+  "userName": "Nom d'utilisateur",
+  "Password": "Mot de passe",
+  "Login": "Connexion",
+  "enterUname": "Veuillez entrer votre nom d'utilisateur !!",
+  "enterPassword": "Veuillez entrer votre mot de passe !!",
+  "mailNotValid": "L'adresse e-mail que vous avez saisie est invalide.",
+  "conWizGog": "Ou continuez avec un compte Google.",
+  "googleLogin": "Se connecter avec Google",
+  "home": "Accueil",
+  "settings": "Paramètres",
+  "profile": "Profil",
+  "logout": "Déconnexion",
+  "personalInfo": "Informations personnelles",
+  "changePass": "Changer le mot de passe",
+  "editPro": "Modifier le profil",
+  "language": "Langue",
+  "themeMode": "Mode thème",
+  "appInfo": "Informations sur l'application",
+  "appVer": "Version de l'application",
+  "personal": "Personnel",
+  "professional": "Professionnel",
+  "documents": "Documents",
+  "name": "Nom complet",
+  "mail": "E-mail",
+  "phone": "Téléphone",
+  "address": "Adresse",
+  "empID": "Identifiant Employé",
+  "job": "Poste",
+  "schMail": "E-mail de l’école",
+  "empType": "Type d’employé",
+  "department": "Département",
+  "manager": "Responsable hiérarchique",
+  "xper": "Expérience dans l’école",
+
+
+
+
+  "networkError" : "Pas de connexion Internet, veuillez vérifier les paramètres de votre téléphone.",
+  "loginError" : "Nom d’utilisateur ou mot de passe invalide, veuillez vérifier et réessayer !"
+
+
+}
