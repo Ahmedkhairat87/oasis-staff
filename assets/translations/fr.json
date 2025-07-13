@@ -35,5 +35,13 @@
   "empType": "Type d’employé",
   "department": "Département",
   "manager": "Responsable hiérarchique",
-  "xper": "Expérience dans l’école"
+  "xper": "Expérience dans l’école",
+
+
+
+
+  "networkError" : "Pas de connexion Internet, veuillez vérifier les paramètres de votre téléphone.",
+  "loginError" : "Nom d’utilisateur ou mot de passe invalide, veuillez vérifier et réessayer !"
+
+
 }
