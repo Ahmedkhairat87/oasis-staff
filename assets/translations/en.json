@@ -36,5 +36,11 @@
   "empType": "Employee Type",
   "department": "Department",
   "manager": "Reporting Manager",
-  "xper": "School Experience"
+  "xper": "School Experience",
+
+
+
+
+  "networkError" : "No internet connection , please check your phone settings",
+  "loginError" : "Invalid username or password , please check and try again!"
 }

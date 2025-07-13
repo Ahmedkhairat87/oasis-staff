@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oasisstaff/core/api-control/apiServiceProvider.dart';
-import 'package:oasisstaff/core/api-control/apiManager.dart';
-import 'package:oasisstaff/core/app_style.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:oasisstaff/core/constants.dart';
-import 'package:oasisstaff/core/services/loginServices/AuthLoginService.dart';
-import 'package:oasisstaff/model/sourcesResponse/LoginResponse.dart';
+import 'package:oasisstaff/core/reusable_components/toastErrorMsg.dart';
 import 'package:provider/provider.dart';
 import 'package:oasisstaff/core/reusable_components/custom_button.dart';
 import 'package:oasisstaff/core/reusable_components/text_box.dart';
 import 'package:oasisstaff/core/assets_Manager.dart';
 import 'package:oasisstaff/core/strings_manager.dart';
 import 'core/providers/thememode_provider.dart';
+import 'core/services/loginServices/AuthLoginService.dart';
 import 'home.dart';
+import 'model/sourcesResponse/LoginResponse.dart';
 
 class Login extends StatefulWidget {
   static const String routeName = "login_screen";
@@ -137,121 +136,102 @@ class _LoginState extends State<Login> {
                           color: colorScheme.onSurface,
                         ),
                       ),
+                      SizedBox(height: 20.h),
+                      CustomTextBox(
+                        hint: StringsManager.userName.tr(),
+                        icon: const Icon(Icons.account_box),
+                        controller: usernameController,
+                        keyboardType: TextInputType.emailAddress,
+                        isObscured: false,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return StringsManager.enterUname.tr();
+                          }
+                          if (!RegExp(emailRegex).hasMatch(value)) {
+                            return StringsManager.mailNotValid.tr();
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+                      CustomTextBox(
+                        hint: StringsManager.Password.tr(),
+                        icon: const Icon(Icons.password),
+                        controller: passwordController,
+                        keyboardType: TextInputType.visiblePassword,
+                        isObscured: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return StringsManager.enterPassword.tr();
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  ////Login Button Starts
+                  CustomButton(
+                    txt: StringsManager.Login.tr(),
+                    onPressed: () async {
+                 if (formKey.currentState!.validate()) {
+                   try {
+                   LoginResponse response = await AuthLoginService.login(
+                    username: usernameController.text,
+                    password: passwordController.text,
+                    deviceId: "",
+                    deviceType: "",
+                    fcmToken: "",
+                  );
 
-                    ),
-                    SizedBox(height: 20.h),
-                    CustomTextBox(
-                      hint: StringsManager.userName.tr(),
-                      icon: const Icon(Icons.account_box),
-                      controller: usernameController,
-                      keyboardType: TextInputType.emailAddress,
-                      isObscured: false,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return StringsManager.enterUname.tr();
-                        }
-                        if (!RegExp(emailRegex).hasMatch(value)){
-                          return StringsManager.mailNotValid.tr();
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 20.h),
-                    CustomTextBox(
-                      hint: StringsManager.Password.tr(),
-                      icon: const Icon(Icons.password),
-                      controller: passwordController,
-                      keyboardType: TextInputType.visiblePassword,
-                      isObscured: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return StringsManager.enterPassword.tr();
-                        }
-                        return null;
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.h),
-                ////Login Button Starts
-                CustomButton(
-                  txt: StringsManager.Login.tr(),
-                  onPressed: () async {
-                    if (formKey.currentState!.validate()) {
-                      // var params = {
-                      //   "user" : usernameController.text ,
-                      //   "pass" : passwordController.text ,
-                      //   "deviceID":"" ,
-                      //   "deviceType":"" ,
-                      //   "FCM":""
-                      // };
+                  if (response.token != null && response.token != "") {
 
+                    final userData = response.data?.isNotEmpty == true ? response.data!.first : null;
+                    print("✅ Welcome ${userData?.empName}");
+                    print("🔑 Token: ${response.token}");
+                    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
 
+                  } else {
+                    ToastMsg.toastErrorMsg(context, StringsManager.loginError.tr());
+                         }
+                   }
+                   catch(e) {
+                     print(e);
+                    ToastMsg.toastErrorMsg(context, StringsManager.networkError.tr());
 
-                      LoginResponse response = await AuthLoginService.login(
-                          username: usernameController.text,
-                          password: passwordController.text,
-                          deviceId: "",
-                          deviceType: "",
-                          fcmToken: ""
-                      );
+                   }
 
-                      if (response.token != null && response.token != "") {
-                        final userData = response.data?.isNotEmpty == true ? response.data!.first : null;
-                        print("✅ Welcome ${userData?.empName}");
-                        print("🔑 Token: ${response.token}");
-                                               
-                        Navigator.pushNamed(context,HomeScreen.routeName);
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   SnackBar(
+                    //     content: Text(' Login failed. Please check your username and password.'),
+                    //     backgroundColor: Colors.red,
+                    //     duration: Duration(seconds: 3),
+                    //
+                    //   ),
+                    // );
+                    // print(" Error:");
 
-                      } else {
-                        print("❌ Error:");
-                      }
+                }
+                //validation
+                else {
+                  print("🛑 Validation Error");
+                }
+              },
 
-                    }
-
-                    //validation
-                    else {
-                      print("🛑 Validation Error");
-                    }
-
-                    }
-                ),
-                ////Login Button Ends
-                SizedBox(height: 20.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.w),
-                        height: 1.h,
-                        color: colorScheme.onSurface.withOpacity(0.5),
-                      ),),
-                    Text(StringsManager.conWizGog.tr(),
-                      style: textTheme.labelMedium?.copyWith(
-                        color: colorScheme.onSurface,),
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.w),
-                        height: 1.h,
-                        color: colorScheme.onSurface.withOpacity(0.5),
-                      ),),
-                  ],
-                ),
-                SizedBox(height: 20.h),
-                ////Google Button Starts Here
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    side: BorderSide(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
                   ),
                   ////Login Button Ends
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 10.h),
+                  //handel the login error
+                  // Visibility(
+                  //   visible: false,
+                  //   child: Text(
+                  //     StringsManager.loginContinue.tr(),
+                  //     style: textTheme.labelMedium?.copyWith(
+                  //       color: colorScheme.onSurface,
+                  //     ),
+                  //   ),
+                  // ),
+                  SizedBox(height: 50.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -378,4 +358,3 @@ class _LoginState extends State<Login> {
     );
   }
 }
-

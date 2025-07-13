@@ -40,4 +40,17 @@ static String manager = "manager";
 static String xper = "xper";
 
 
+
+
+//Error messages
+static String networkError = "networkError";
+static String loginError = "loginError";
+static String aError = "networkError";
+static String bError = "networkError";
+static String cError = "networkError";
+static String dError = "networkError";
+static String eError = "networkError";
+
+
+
 }
